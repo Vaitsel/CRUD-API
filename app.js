@@ -4,6 +4,8 @@ import * as http from 'http';
 import { create } from './componnets/createUser.js';
 import { getUser } from './componnets/getUser.js';
 import { getOneUser } from './componnets/getOneUser.js'
+import { changeUser } from './componnets/changeUser.js'
+import { deleteUser } from './componnets/deleteUser.js'
 
 let users = [];
 
@@ -18,11 +20,10 @@ app.on("request", (req, res) => {
   switch (req.method) {
     case "GET":
       if (urlparse.pathname.split('/').length > 3 && urlparse.pathname.split('/')[3]) {
-        getOneUser(urlparse.pathname.split('/')[3],req, res, users);
+        getOneUser(urlparse.pathname.split('/')[3],req,res,users);
       } else {
         getUser(req, res, users);
       }
-  
       break
 
     case "POST":
@@ -31,11 +32,16 @@ app.on("request", (req, res) => {
       break
 
     case "PUT":
+      if (urlparse.pathname.split('/').length > 3 && urlparse.pathname.split('/')[3]) {
+        changeUser(urlparse.pathname.split('/')[3],req,res,users);
+      }
 
       break
 
     case "DELETE":
-
+      if (urlparse.pathname.split('/').length > 3 && urlparse.pathname.split('/')[3]) {
+        deleteUser(urlparse.pathname.split('/')[3],req,res,users);
+      }
       break
 
     default:

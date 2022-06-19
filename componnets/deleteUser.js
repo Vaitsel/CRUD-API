@@ -1,12 +1,16 @@
 import { validate } from 'uuid';
 
-export const getOneUser = async (id,req,res,users) => {
+export const deleteUser = async (id,req,res,users) => {
     if (validate(id)) {
         const result = users.find((user) => user.id === id);
         if (result) {
-            res.statusCode = 200;
+            users.forEach((user,index) => {
+                if (user.id === id) {
+                    users.splice(index,1)
+                }
+            });
+            res.statusCode = 204;
             res.setHeader("Content-Type", "application/json");
-            res.write(JSON.stringify(result));
             res.end();
             return
         } else {
