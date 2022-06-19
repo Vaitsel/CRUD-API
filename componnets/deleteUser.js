@@ -1,6 +1,6 @@
-import { validate } from 'uuid';
+const { v4: uuidv4, validate } = require('uuid');
 
-export const deleteUser = async (id,req,res,users) => {
+const deleteUser = async (id,req,res,users) => {
     if (validate(id)) {
         const result = users.find((user) => user.id === id);
         if (result) {
@@ -25,3 +25,5 @@ export const deleteUser = async (id,req,res,users) => {
         res.end('UserId not valid (not uuid)');
     }
 }
+
+module.exports = deleteUser;

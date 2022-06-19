@@ -1,6 +1,6 @@
-import { v4 as uuidv4 } from 'uuid';
+const { v4: uuidv4, validate } = require('uuid');
 
-export const create = async (req, res, users) => {
+const create = async (req, res, users) => {
     req.on('data', data => {
         try {
             const jsondata = JSON.parse(data);
@@ -35,3 +35,5 @@ export const create = async (req, res, users) => {
         }
     })
 };
+
+module.exports = create;

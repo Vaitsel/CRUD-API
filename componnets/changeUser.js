@@ -1,6 +1,6 @@
-import { validate } from 'uuid';
+const { v4: uuidv4, validate } = require('uuid');
 
-export const changeUser = async (id,req,res,users) => {
+const changeUser = async (id,req,res,users) => {
     req.on('data', data => {
         try {        
             if (validate(id)) {
@@ -38,3 +38,5 @@ export const changeUser = async (id,req,res,users) => {
         }
     })
 }
+
+module.exports = changeUser;

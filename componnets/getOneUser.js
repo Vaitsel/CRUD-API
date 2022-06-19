@@ -1,6 +1,6 @@
-import { validate } from 'uuid';
+const { v4: uuidv4, validate } = require('uuid');
 
-export const getOneUser = async (id,req,res,users) => {
+const getOneUser = async (id,req,res,users) => {
     if (validate(id)) {
         const result = users.find((user) => user.id === id);
         if (result) {
@@ -21,3 +21,5 @@ export const getOneUser = async (id,req,res,users) => {
         res.end('UserId not valid (not uuid)');
     }
 }
+
+module.exports = getOneUser;

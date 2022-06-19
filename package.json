@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "module",
   "scripts": {
     "start:dev": "nodemon app.js",
     "start:prod": "webpack --mode production --config webpack.config.js && node ./dist/main.js"
