@@ -2,6 +2,8 @@ import * as url from "url"
 import {} from 'dotenv/config'
 import * as http from 'http'; 
 import { create } from './componnets/createUser.js';
+import { getUser } from './componnets/getUser.js';
+import { getOneUser } from './componnets/getOneUser.js'
 
 let users = [];
 
@@ -15,16 +17,10 @@ app.on("request", (req, res) => {
    
   switch (req.method) {
     case "GET":
-
-      if (urlparse.pathname == ('/api/users/')) {
-
+      if (urlparse.pathname.split('/').length > 3 && urlparse.pathname.split('/')[3]) {
+        getOneUser(urlparse.pathname.split('/')[3],req, res, users);
       } else {
-        if (urlparse.pathname == '/api/users') {
-          res.writeHead(200, {'Content-Type': 'application/json'});
-          res.end(JSON.stringify(users));
-        } else {
-
-        }
+        getUser(req, res, users);
       }
   
       break
@@ -32,7 +28,6 @@ app.on("request", (req, res) => {
     case "POST":
       create(req, res, users);
       users = users;
-
       break
 
     case "PUT":
