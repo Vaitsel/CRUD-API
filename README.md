@@ -9,6 +9,12 @@
 4. npm run strart:dev or npm run strart:prod
 ---
 
+## Start Server:
+---
+1. Create **.env** file
+2. Write **PORT** there, how in env.example
+---
+
 ## Endpoints
 ---
 - GET:
@@ -23,8 +29,8 @@
 ---
 
 
-- **USER:** are stored as objects that have following properties:
----
+**USER:** are stored as objects that have following properties:
+ ---
 - `id` — unique identifier (string, uuid) generated on server side
 - `username` — user's name (string, **(required)**)
 - `age` — user's age (number, **(required)**)
